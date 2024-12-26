@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/userinfo', [AuthController::class, 'userinfo'])->middleware('auth:sanctum');
+Route::get('/userinfo', [AuthController::class, 'userinfo'])->middleware(['auth:sanctum']);
+
+
+Route::post('/customers/register', [CustomerAuthController::class, 'register']);
+Route::post('/customers/login', [CustomerAuthController::class, 'login']);
+
+Route::get('/customers/userinfo', [CustomerAuthController::class, 'userinfo'])->middleware(['auth:sanctum']);
